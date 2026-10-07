@@ -21,3 +21,17 @@ Here is exactly what I did step-by-step:
 - **Flexbox and CSS Grid**: Used Flexbox for the header layout and CSS Grid for movie cards.
 - **Responsive Design**: Added `@media` queries for 768px and 480px screens so the navigation and page layout adapt to tablets and mobile devices.
 - **Interactive Elements**: Added `:hover` effects for links, cards, buttons, and movie overlays.
+
+## Nurkhan Karashev — My Contribution
+
+In this project, I was responsible for completing the site structure and adding the interactive pages: **Reviews** and **Contact**.
+
+Here is what I worked on:
+
+Reviews Page reviews.html: Created a clean, responsive layout featuring the "Top Movies Ranking" table with ratings, directors, and release years. Integrated Bootstrap styling to ensure it works smoothly across all screen sizes.
+
+Contact & Feedback Page contact.html: Built a full feedback form containing inputs for name and email, a dropdown menu to suggest movie genres, and a text area for user messages or reviews.
+
+Layout & Navigation: Aligned both pages with the main site style by reusing the core header navigation, custom color scheme, and sticky footer setup.
+
+Git Workflow: Structured the development history with clean, step-by-step commits in GitHub to keep the repository well-organized for team collaboration.
