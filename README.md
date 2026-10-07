@@ -35,3 +35,6 @@ Contact & Feedback Page contact.html: Built a full feedback form containing inpu
 Layout & Navigation: Aligned both pages with the main site style by reusing the core header navigation, custom color scheme, and sticky footer setup.
 
 Git Workflow: Structured the development history with clean, step-by-step commits in GitHub to keep the repository well-organized for team collaboration.
+
+## Link to the website
+https://zhalayminbaev2003-hub.github.io/WebMidterm/
