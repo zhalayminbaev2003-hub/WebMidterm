@@ -193,3 +193,34 @@ body {
 .social-links a:hover {
     color: #fff;
 }
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .nav-menu {
+        margin-top: 15px;
+    }
+
+    body {
+        padding-top: 110px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu a {
+        margin: 5px 0;
+    }
+
+    body {
+        padding-top: 180px;
+    }
+}
