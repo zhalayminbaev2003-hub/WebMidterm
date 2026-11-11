@@ -62,8 +62,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="userMessage" class="form-label text-light">Message or Review</label>
+                        <small id="messageError" class="text-danger"></small>
                         <textarea class="form-control" id="userMessage" rows="4" required></textarea>
                     </div>
+                    <div id="formResult" class="mb-3"></div>
                     <button type="submit" class="btn custom-btn w-100">Send Message</button>
                 </form>
             </div>
@@ -73,5 +75,7 @@
     <footer class="footer text-center">
         <p>&copy; 2026 CinemaHub. All rights reserved.</p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
