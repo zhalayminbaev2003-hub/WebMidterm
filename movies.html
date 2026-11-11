@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+
 <body>
     <header class="header">
         <div class="logo">CinemaHub</div>
@@ -22,6 +24,17 @@
 
     <main class="container mt-5 mb-5">
         <h2 class="text-center mb-4">Movie Catalog</h2>
+
+        <div class="mb-4">
+            <input type="text"
+                id="movieSearch"
+                class="form-control"
+                placeholder="Search movies...">
+        </div>
+
+<p id="searchResult" class="text-center"></p>
+
+
         <div class="movie-grid">
 
             <div class="movie-card">
@@ -109,5 +122,9 @@
     <footer class="footer text-center">
         <p>&copy; 2026 CinemaHub. All rights reserved.</p>
     </footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/script.js"></script>
+
 </body>
 </html>
