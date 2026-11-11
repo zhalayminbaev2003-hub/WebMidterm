@@ -39,39 +39,100 @@ Git Workflow: Structured the development history with clean, step-by-step commit
 ## Link to the website
 https://zhalayminbaev2003-hub.github.io/WebMidterm/
 
-CinemaHub - End Of Term Project
-About the Project
-CinemaHub is a movie website created for our Web Development course.
-We started this project during the midterm. For the endterm, we continued working on the same website and added new features using JavaScript and jQuery.
-Users can explore movies, watch trailers, check movie ratings and send feedback.
-Group Members
-•	Almanzor Kamzeyev
-•	Nurkhan Karashev
-•	Turganbay Islambek
-Website Pages
-Our website has five pages:
-1.	Home - Popular movies and image gallery.
-2.	Movies - Movie catalog with search and filters.
-3.	Trailers - Movie trailers from YouTube.
-4.	Reviews - Movie ratings and a table where users can add, edit and delete movies.
-5.	Contact - Feedback and registration form with validation.
-Endterm Features
-For the endterm, we added these features:
-•	Form validation for name, email, password and message.
-•	Email validation using RegEx.
-•	Password strength indicator.
-•	Password confirmation.
-•	Real-time movie search.
-•	Movie filtering by categories.
-•	CRUD operations (Create, Read, Update, Delete).
-•	Local storage to save table changes in the browser.
-•	Image gallery with lightbox and navigation buttons.
-•	jQuery animations.
-Technologies Used
-•	HTML5
-•	CSS3
-•	Bootstrap 5
-•	JavaScript
-•	jQuery
-•	Git and GitHub
+# CinemaHub - Web Development Project
 
+## About the Project
+
+CinemaHub is a movie website created for our Web Development course.
+
+We started this project during the midterm. For the endterm, we improved the same website by adding JavaScript and jQuery features.
+
+Users can explore movies, watch trailers, check ratings, and send feedback.
+
+## Group Members
+
+- Almanzor Kamzeyev
+- Nurkhan Karashev
+- Turganbay Islambek
+
+## Website Pages
+
+Our website has 5 pages:
+
+1. **Home** - Popular movies and image gallery.
+2. **Movies** - Movie catalog with search and category filters.
+3. **Trailers** - Movie trailers from YouTube.
+4. **Reviews** - Movie ratings and CRUD table.
+5. **Contact** - Registration and feedback form.
+
+## Endterm Features
+
+We added the following features:
+
+- Registration form validation
+- Email validation using RegEx
+- Password strength indicator
+- Password confirmation
+- Real-time movie search
+- Movie category filters
+- CRUD operations (Add, View, Edit, Delete)
+- Local storage for movie data
+- Image gallery with 9 movie posters
+- Lightbox with navigation buttons
+- jQuery animations
+
+## Technologies Used
+
+- HTML5
+- CSS3
+- Bootstrap 5
+- JavaScript
+- jQuery
+- Git and GitHub
+
+## Group Contributions
+
+### Almanzor Kamzeyev
+
+- Added the movie gallery
+- Created the lightbox HTML
+- Improved gallery CSS
+- Fixed the footer position
+
+### Nurkhan Karashev
+
+- Added password fields to the Contact form
+- Added form validation
+- Added password strength indicator
+- Added feedback messages
+- Worked on gallery JavaScript
+
+### Turganbay Islambek
+
+- Added movie search
+- Added category filters
+- Implemented CRUD operations
+- Added local storage
+
+## How to Run
+
+1. Download or clone the repository.
+2. Open the WebMidterm folder in VS Code.
+3. Open `index.html` using Live Server.
+4. Use the navigation menu to explore the website.
+
+## Git Workflow
+
+We worked on the same GitHub repository and used separate commits for our changes. Each group member was responsible for different parts of the project.
+
+## GitHub Repository
+
+https://github.com/zhalayminbaev2003-hub/WebMidterm
+
+## Published Website
+
+https://zhalayminbaev2003-hub.github.io/WebMidterm/
+
+## Conclusion
+
+During this project, we learned how to use JavaScript and jQuery to make our website more interactive. We also practiced working with GitHub as a team.
