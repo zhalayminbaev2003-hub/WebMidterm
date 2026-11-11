@@ -24,13 +24,16 @@
         <h2 class="text-center mb-4">Contact Us</h2>
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
-                <form class="p-4 bg-dark rounded shadow">
+                <form id="registrationForm" class="p-4 bg-dark rounded shadow" novalidate>
+
                     <div class="mb-3">
                         <label for="userName" class="form-label text-light">Name</label>
+                        <small id="nameError" class="text-danger"></small>
                         <input type="text" class="form-control" id="userName" placeholder="Palenshe Tugenshe" required>
                     </div>
                     <div class="mb-3">
                         <label for="userEmail" class="form-label text-light">Email Address</label>
+                        <small id="emailError" class="text-danger"></small>
                         <input type="email" class="form-control" id="userEmail" placeholder="name@example.com" required>
                     </div>
                     <div class="mb-3">
