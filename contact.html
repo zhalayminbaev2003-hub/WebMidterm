@@ -37,6 +37,20 @@
                         <input type="email" class="form-control" id="userEmail" placeholder="name@example.com" required>
                     </div>
                     <div class="mb-3">
+                    <label for="userPassword" class="form-label text-light">Password</label>
+                    <input type="password" id="userPassword" class="form-control">
+                    <small id="passwordError" class="text-danger"></small>
+                    </div>
+
+                    <div class="progress mb-2">
+                    <div id="strengthBar" class="progress-bar" style="width:0%"></div></div>
+                    <p id="strengthText" class="text-light"></p>
+                    <div class="mb-3">
+                    <label for="confirmPassword" class="form-label text-light">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-control">
+                    <small id="confirmError" class="text-danger"></small></div>
+
+                    <div class="mb-3">
                         <label for="movieSuggestion" class="form-label text-light">Suggest a Movie</label>
                         <select class="form-select" id="movieSuggestion">
                             <option selected>Select genre...</option>
