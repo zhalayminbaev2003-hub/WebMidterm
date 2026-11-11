@@ -114,20 +114,9 @@ We added the following features:
 - Implemented CRUD operations
 - Added local storage
 
-## How to Run
-
-1. Download or clone the repository.
-2. Open the WebMidterm folder in VS Code.
-3. Open `index.html` using Live Server.
-4. Use the navigation menu to explore the website.
-
 ## Git Workflow
 
 We worked on the same GitHub repository and used separate commits for our changes. Each group member was responsible for different parts of the project.
-
-## GitHub Repository
-
-https://github.com/zhalayminbaev2003-hub/WebMidterm
 
 ## Published Website
 
