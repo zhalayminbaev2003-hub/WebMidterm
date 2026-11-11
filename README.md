@@ -38,3 +38,40 @@ Git Workflow: Structured the development history with clean, step-by-step commit
 
 ## Link to the website
 https://zhalayminbaev2003-hub.github.io/WebMidterm/
+
+CinemaHub - End Of Term Project
+About the Project
+CinemaHub is a movie website created for our Web Development course.
+We started this project during the midterm. For the endterm, we continued working on the same website and added new features using JavaScript and jQuery.
+Users can explore movies, watch trailers, check movie ratings and send feedback.
+Group Members
+•	Almanzor Kamzeyev
+•	Nurkhan Karashev
+•	Turganbay Islambek
+Website Pages
+Our website has five pages:
+1.	Home - Popular movies and image gallery.
+2.	Movies - Movie catalog with search and filters.
+3.	Trailers - Movie trailers from YouTube.
+4.	Reviews - Movie ratings and a table where users can add, edit and delete movies.
+5.	Contact - Feedback and registration form with validation.
+Endterm Features
+For the endterm, we added these features:
+•	Form validation for name, email, password and message.
+•	Email validation using RegEx.
+•	Password strength indicator.
+•	Password confirmation.
+•	Real-time movie search.
+•	Movie filtering by categories.
+•	CRUD operations (Create, Read, Update, Delete).
+•	Local storage to save table changes in the browser.
+•	Image gallery with lightbox and navigation buttons.
+•	jQuery animations.
+Technologies Used
+•	HTML5
+•	CSS3
+•	Bootstrap 5
+•	JavaScript
+•	jQuery
+•	Git and GitHub
+
