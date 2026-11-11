@@ -288,30 +288,59 @@ main {
     }
 }
 
+
 #posterGallery .gallery-item {
-    display: block;
     width: 100%;
-    padding: 10px;
-    background-color: #1a1a1a;
-    border: none;
-    border-radius: 10px;
+    height: 450px;
+    padding: 0;
+    background: #151515;
+    border: 2px solid #e50914;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     cursor: pointer;
 }
 
 #posterGallery .gallery-item img {
     width: 100%;
-    height: 420px;
+    height: 100%;
     object-fit: contain;
-    display: block;
-    border-radius: 8px;
 }
 
 #posterGallery .gallery-item:hover {
-    outline: 2px solid #e50914;
+    border-color: white;
 }
 
 @media (max-width: 768px) {
-    #posterGallery .gallery-item img {
-        height: 350px;
+    #posterGallery .gallery-item {
+        height: 400px;
     }
+}
+
+
+#posterGallery .gallery-item {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: 2px solid #e50914;
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+    cursor: pointer;
+}
+
+#posterGallery .gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: initial;
+}
+
+#posterGallery .gallery-item:hover {
+    border-color: white;
 }
