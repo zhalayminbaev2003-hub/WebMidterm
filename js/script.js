@@ -92,3 +92,111 @@ $(function () {
         });
     }
 });
+$(function () {
+    if ($('#movieSearch').length) {
+        let category = 'all';
+        function filterMovies() {
+            const search = $('#movieSearch').val().trim().toLowerCase();
+            let count = 0;
+            $('.movie-grid .movie-card').each(function () {
+                const text = $(this).find('.movie-info').text().toLowerCase();
+                const genre = $(this).data('category');
+                const match = text.includes(search) &&
+                    (category === 'all' || genre === category);
+                $(this).toggle(match);
+                if (match) count++;
+            });
+            $('#searchResult').text('Movies found: ' + count);
+        }
+        $('#movieSearch').on('input', filterMovies);
+        $('.filter-btn').on('click', function () {
+            category = $(this).data('filter');
+            $('.filter-btn').removeClass('btn-danger').addClass('btn-outline-light');
+            $(this).removeClass('btn-outline-light').addClass('btn-danger');
+            filterMovies();
+        });
+        filterMovies();
+    }
+    if ($('#movieTableBody').length) {
+        const key = 'cinemahubMovies';
+        let movies = [];
+        $('#movieTableBody tr').each(function (index) {
+            const t = $(this).find('td');
+            movies.push({id: index + 1, title: t.eq(0).text().trim(),
+                director: t.eq(1).text().trim(), year: Number(t.eq(2).text()),
+                rating: Number(t.eq(3).text())});
+        });
+        try {
+            const saved = JSON.parse(localStorage.getItem(key));
+            if (Array.isArray(saved)) movies = saved;
+        } catch (error) {}
+        let editingId = null;
+        function save() {
+            try { localStorage.setItem(key, JSON.stringify(movies)); }
+            catch (error) { $('#movieAlert').text('Storage is unavailable'); }
+        }
+        function render() {
+            const body = $('#movieTableBody').empty();
+            movies.forEach(function (movie, index) {
+                const row = $('<tr>');
+                $('<th>').text(index + 1).appendTo(row);
+                $('<td>').text(movie.title).appendTo(row);
+                $('<td>').text(movie.director).appendTo(row);
+                $('<td>').text(movie.year).appendTo(row);
+                $('<td>').text(movie.rating).appendTo(row);
+                const buttons = $('<td>');
+                $('<button>').addClass('btn btn-warning btn-sm me-2')
+                    .text('Edit').attr('data-edit', movie.id).appendTo(buttons);
+                $('<button>').addClass('btn btn-danger btn-sm')
+                    .text('Delete').attr('data-delete', movie.id).appendTo(buttons);
+                row.append(buttons).appendTo(body);
+            });
+        }
+        $('#movieForm').on('submit', function (event) {
+            event.preventDefault();
+            if (!this.checkValidity()) { this.reportValidity(); return; }
+            const title = $('#movieTitle').val().trim();
+            const director = $('#movieDirector').val().trim();
+            const year = Number($('#movieYear').val());
+            const rating = Number($('#movieRating').val());
+            if (!title || !director || year < 1888 || year > 2100 ||
+                rating < 0 || rating > 10) return;
+            if (editingId === null) {
+                const id = movies.reduce((max, m) => Math.max(max, m.id), 0) + 1;
+                movies.push({id, title, director, year, rating});
+            } else {
+                const movie = movies.find(m => m.id === editingId);
+                if (movie) Object.assign(movie, {title, director, year, rating});
+                editingId = null;
+            }
+            save();
+            render();
+            this.reset();
+            $('#saveMovie').text('Add');
+        });
+        $('#movieTableBody').on('click', '[data-edit]', function () {
+            const id = Number($(this).attr('data-edit'));
+            const movie = movies.find(m => m.id === id);
+            if (!movie) return;
+            editingId = id;
+            $('#movieTitle').val(movie.title);
+            $('#movieDirector').val(movie.director);
+            $('#movieYear').val(movie.year);
+            $('#movieRating').val(movie.rating);
+            $('#saveMovie').text('Save');
+        });
+        $('#movieTableBody').on('click', '[data-delete]', function () {
+            const id = Number($(this).attr('data-delete'));
+            if (!confirm('Delete this movie?')) return;
+            movies = movies.filter(m => m.id !== id);
+            if (editingId === id) {
+                editingId = null;
+                $('#movieForm')[0].reset();
+                $('#saveMovie').text('Add');
+            }
+            save();
+            render();
+        });
+        render();
+    }
+});
