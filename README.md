@@ -39,7 +39,7 @@ Git Workflow: Structured the development history with clean, step-by-step commit
 ## Link to the website
 https://zhalayminbaev2003-hub.github.io/WebMidterm/
 
-# CinemaHub - Web Development Project
+# CinemaHub - Web Development Endterm Project
 
 ## About the Project
 
