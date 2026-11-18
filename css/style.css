@@ -67,7 +67,6 @@ a {
     color: var(--muted-color) !important;
 }
 
-/* Bootstrap dark components adapted to the light theme */
 html[data-theme="light"] .table-dark {
     --bs-table-bg: #ffffff;
     --bs-table-color: #16181d;
@@ -207,7 +206,6 @@ html[data-theme="light"] .hero .text-light {
     white-space: nowrap;
 }
 
-/* Buttons, sections & shared components */
 .hero {
     height: 60vh;
     background: transparent;
