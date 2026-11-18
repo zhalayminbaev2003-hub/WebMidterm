@@ -54,7 +54,7 @@ File structure:
 ```
 WebMidterm/
 ├── index.html, movies.html, trailers.html, reviews.html, faq.html, contact.html
-├── README.md, REPORT.md
+├── README.md, report/REPORT.md
 ├── css/style.css
 ├── js/jquery.min.js, js/theme.js, js/api.js, js/script.js
 ├── images/ (posters + background)
@@ -143,7 +143,7 @@ API key and allows cross-origin requests, which is why it also works on the depl
 
 - `README.md` — topic, group members, implemented features, technologies, contribution of every member,
   folder structure and run instructions.
-- `REPORT.md` — this document: objectives, structure, features, development process, contributions,
+- `report/REPORT.md` — this document: objectives, structure, features, development process, contributions,
   screenshots and links.
 
 ---
@@ -191,7 +191,7 @@ of every team member.
 - Reviews page, Contact page, form validation and password strength indicator (midterm).
 - **Sign-in / sign-out logic**: validation, `localStorage` session, `renderUser()`, the signed-in and
   guest interfaces (user chip, account card, locked rating form on the Reviews page).
-- Update of `README.md` and `REPORT.md`.
+- Update of `README.md` and the report.
 
 ---
 
@@ -199,15 +199,15 @@ of every team member.
 
 | Home page | Movies page (API search) |
 |---|---|
-| ![Home page](report/images/home.jpg) | ![Movies page](report/images/movies.jpg) |
+| ![Home page](images/home.jpg) | ![Movies page](images/movies.jpg) |
 
 | FAQ page | Reviews page (signed in) |
 |---|---|
-| ![FAQ page](report/images/faq.jpg) | ![Reviews page](report/images/reviews.jpg) |
+| ![FAQ page](images/faq.jpg) | ![Reviews page](images/reviews.jpg) |
 
 | Light theme | Sign-in modal |
 |---|---|
-| ![Light theme](report/images/light-theme.jpg) | ![Sign-in modal](report/images/sign-in.jpg) |
+| ![Light theme](images/light-theme.jpg) | ![Sign-in modal](images/sign-in.jpg) |
 
 ---
 
