@@ -11,11 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=1">
 
+    <script src="js/theme.js?v=1"></script>
 </head>
 
 <body>
     <header class="header">
-                <nav class="nav-menu" aria-label="Main navigation">
+        <div class="logo">CinemaHub</div>
+
+        <nav class="nav-menu" aria-label="Main navigation">
             <a href="index.html">Home</a>
             <a href="movies.html">Movies</a>
             <a href="trailers.html">Trailers</a>
@@ -23,23 +26,7 @@
             <a href="contact.html">Contact</a>
         </nav>
 
-        <div class="nav-actions">
-            <button id="themeToggle" class="theme-toggle" type="button" title="Switch theme" aria-label="Switch theme">
-                <span id="themeIcon" aria-hidden="true">&#127769;</span>
-            </button>
-
-            <div class="user-menu">
-                <button id="signInBtn" class="btn btn-sm btn-outline-light" type="button"
-                        data-bs-toggle="modal" data-bs-target="#signInModal">Sign In</button>
-
-                <div id="userChip" class="user-chip d-none">
-                    <span class="user-avatar" id="userInitial" aria-hidden="true">C</span>
-                    <span class="user-name" id="userNameLabel">Guest</span>
-                    <button id="signOutBtn" class="btn btn-sm btn-outline-danger" type="button">Sign Out</button>
-                </div>
-            </div>
-        </div>
-    </header>
+            </header>
 
     <main>
         <section class="hero text-center text-light d-flex align-items-center justify-content-center">
