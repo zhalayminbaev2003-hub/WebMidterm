@@ -370,6 +370,48 @@ $(function () {
     renderUser();
 });
 
+/* FAQ accordion - jQuery .slideToggle() */
+$(function () {
+    const $questions = $('.faq-question');
+
+    if ($questions.length) {
+        $questions.on('click', function () {
+            const $button = $(this);
+            const $answer = $button.next('.faq-answer');
+            const $indicator = $button.find('.faq-toggle');
+            const isOpen = $button.attr('aria-expanded') === 'true';
+
+            $answer.slideToggle(350);
+            $button.attr('aria-expanded', isOpen ? 'false' : 'true');
+            $indicator.text(isOpen ? '+' : '−');
+        });
+
+        $('#expandAll').on('click', function () {
+            $questions.each(function () {
+                const $button = $(this);
+                const $answer = $button.next('.faq-answer');
+                if ($button.attr('aria-expanded') !== 'true') {
+                    $answer.slideDown(350);
+                    $button.attr('aria-expanded', 'true');
+                    $button.find('.faq-toggle').text('−');
+                }
+            });
+        });
+
+        $('#collapseAll').on('click', function () {
+            $questions.each(function () {
+                const $button = $(this);
+                const $answer = $button.next('.faq-answer');
+                if ($button.attr('aria-expanded') === 'true') {
+                    $answer.slideUp(350);
+                    $button.attr('aria-expanded', 'false');
+                    $button.find('.faq-toggle').text('+');
+                }
+            });
+        });
+    }
+});
+
 /* TVMaze API integration */
 $(function () {
     const api = window.CinemaHub ? window.CinemaHub.api : null;
