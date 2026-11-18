@@ -243,6 +243,46 @@ $(function () {
     const AUTH_KEY = 'cinemahubUser';
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    function getUser() {
+        try {
+            const raw = localStorage.getItem(AUTH_KEY);
+            return raw ? JSON.parse(raw) : null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function setUser(user) {
+        try {
+            localStorage.setItem(AUTH_KEY, JSON.stringify(user));
+        } catch (error) {
+            $('#authMessage').text('Local storage is not available in this browser.');
+        }
+    }
+
+    function clearUser() {
+        try {
+            localStorage.removeItem(AUTH_KEY);
+        } catch (error) {}
+    }
+
+    function initials(name) {
+        return (name || 'U').trim().charAt(0).toUpperCase();
+    }
+
+    function renderUser() {
+        const user = getUser();
+        const signedIn = !!user;
+
+        $('#signInBtn').toggleClass('d-none', signedIn);
+        $('#userChip').toggleClass('d-none', !signedIn);
+
+        if (signedIn) {
+            $('#userInitial').text(initials(user.name));
+            $('#userNameLabel').text(user.name);
+        }
+    }
+
     function validateSignIn() {
         const email = $('#signInEmail').val().trim();
         const password = $('#signInPassword').val();
@@ -270,7 +310,36 @@ $(function () {
         return !emailError && !passwordError;
     }
 
+    $('#signInForm').on('submit', function (event) {
+        event.preventDefault();
+        if (!validateSignIn()) { return; }
+
+        const email = $('#signInEmail').val().trim();
+        const typedName = $('#signInName').val().trim();
+        const name = typedName || email.split('@')[0].replace(/[._-]+/g, ' ').replace(/\b\w/g, function (c) {
+            return c.toUpperCase();
+        });
+
+        setUser({ name: name, email: email, signedInAt: new Date().toISOString() });
+
+        this.reset();
+        $('#signInEmail, #signInPassword').removeClass('is-valid is-invalid');
+        renderUser();
+
+        const modalElement = document.getElementById('signInModal');
+        if (modalElement && window.bootstrap) {
+            window.bootstrap.Modal.getOrCreateInstance(modalElement).hide();
+        }
+    });
+
     $('#signInForm input').on('input', validateSignIn);
+
+    $(document).on('click', '#signOutBtn', function () {
+        clearUser();
+        renderUser();
+    });
+
+    renderUser();
 });
 /* FAQ accordion - jQuery .slideToggle() */
 $(function () {
