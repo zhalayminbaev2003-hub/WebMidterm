@@ -27,7 +27,23 @@
             <a href="contact.html">Contact</a>
         </nav>
 
-            </header>
+        <div class="nav-actions">
+            <button id="themeToggle" class="theme-toggle" type="button" title="Switch theme" aria-label="Switch theme">
+                <span id="themeIcon" aria-hidden="true">&#127769;</span>
+            </button>
+
+            <div class="user-menu">
+                <button id="signInBtn" class="btn btn-sm btn-outline-light" type="button"
+                        data-bs-toggle="modal" data-bs-target="#signInModal">Sign In</button>
+
+                <div id="userChip" class="user-chip d-none">
+                    <span class="user-avatar" id="userInitial" aria-hidden="true">C</span>
+                    <span class="user-name" id="userNameLabel">Guest</span>
+                    <button id="signOutBtn" class="btn btn-sm btn-outline-danger" type="button">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <main>
         <section class="hero text-center text-light d-flex align-items-center justify-content-center">
@@ -148,6 +164,53 @@
         </div>
 
     </main>
+
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signInModalLabel">Sign in to CinemaHub</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form id="signInForm" novalidate>
+                    <div class="modal-body">
+                        <p class="text-muted-custom small">
+                            This demo sign-in validates the input and stores only your display name, e-mail
+                            and login time in <strong>localStorage</strong> - no password is saved.
+                        </p>
+
+                        <div class="mb-3">
+                            <label for="signInName" class="form-label">Display name</label>
+                            <input type="text" class="form-control" id="signInName"
+                                   placeholder="Your name" autocomplete="name">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="signInEmail" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="signInEmail"
+                                   placeholder="name@example.com" autocomplete="email" required>
+                            <small id="signInEmailError" class="text-danger d-block"></small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="signInPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="signInPassword"
+                                   placeholder="At least 6 characters" autocomplete="current-password" required>
+                            <small id="signInPasswordError" class="text-danger d-block"></small>
+                        </div>
+
+                        <div id="authMessage" class="alert alert-info mb-0"></div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn custom-btn">Sign in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer text-center">
         <p>&copy; 2026 CinemaHub. All rights reserved.</p>
