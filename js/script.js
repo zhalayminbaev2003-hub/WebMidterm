@@ -1,3 +1,6 @@
+/* CinemaHub - shared scripts */
+
+/* Contact form validation */
 $(function () {
     const form = $('#registrationForm');
     if (form.length) {
@@ -56,6 +59,10 @@ $(function () {
                 .text(valid ? 'Form checked successfully!' : 'Please correct the fields.');
         });
     }
+});
+
+/* Poster gallery and lightbox */
+$(function () {
     const gallery = $('#posterGallery .gallery-item');
     if (gallery.length) {
         let current = 0;
@@ -90,8 +97,13 @@ $(function () {
         lightbox.on('click', function (event) {
             if (event.target === this) lightbox.fadeOut(250);
         });
+        $(document).on('keydown', function (event) {
+            if (event.key === 'Escape') { lightbox.fadeOut(250); }
+        });
     }
 });
+
+/* Movie search and category filters */
 $(function () {
     if ($('#movieSearch').length) {
         let category = 'all';
@@ -117,6 +129,10 @@ $(function () {
         });
         filterMovies();
     }
+});
+
+/* CRUD table for the reviews page (localStorage) */
+$(function () {
     if ($('#movieTableBody').length) {
         const key = 'cinemahubMovies';
         let movies = [];
@@ -199,4 +215,168 @@ $(function () {
         });
         render();
     }
+});
+
+/* Light / dark theme toggle */
+$(function () {
+    function paintToggle(theme) {
+        const isDark = theme === 'dark';
+        $('#themeIcon').text(isDark ? '🌙' : '☀️');
+        $('#themeToggle')
+            .attr('title', isDark ? 'Switch to the light theme' : 'Switch to the dark theme')
+            .attr('aria-label', isDark ? 'Switch to the light theme' : 'Switch to the dark theme')
+            .attr('aria-pressed', isDark ? 'false' : 'true');
+    }
+
+    if (window.CinemaHub && window.CinemaHub.theme) {
+        paintToggle(window.CinemaHub.theme.get());
+    }
+
+    $('#themeToggle').on('click', function () {
+        if (!window.CinemaHub || !window.CinemaHub.theme) { return; }
+        paintToggle(window.CinemaHub.theme.toggle());
+    });
+});
+
+/* Sign-in / sign-out (localStorage) */
+$(function () {
+    const AUTH_KEY = 'cinemahubUser';
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function getUser() {
+        try {
+            const raw = localStorage.getItem(AUTH_KEY);
+            return raw ? JSON.parse(raw) : null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function setUser(user) {
+        try {
+            localStorage.setItem(AUTH_KEY, JSON.stringify(user));
+        } catch (error) {
+            $('#authMessage').text('Local storage is not available in this browser.');
+        }
+    }
+
+    function clearUser() {
+        try {
+            localStorage.removeItem(AUTH_KEY);
+        } catch (error) {}
+    }
+
+    function initials(name) {
+        return (name || 'U').trim().charAt(0).toUpperCase();
+    }
+
+    function renderUser() {
+        const user = getUser();
+        const signedIn = !!user;
+
+        $('#signInBtn').toggleClass('d-none', signedIn);
+        $('#userChip').toggleClass('d-none', !signedIn);
+
+        if (signedIn) {
+            $('#userInitial').text(initials(user.name));
+            $('#userNameLabel').text(user.name);
+            $('#accountCard').removeClass('d-none');
+            $('#guestCard').addClass('d-none');
+            $('#accountAvatar').text(initials(user.name));
+            $('#accountTitle').text('Welcome back, ' + user.name + '!');
+            $('#accountText').text('Signed in as ' + user.email + '.');
+        } else {
+            $('#accountCard').addClass('d-none');
+            $('#guestCard').removeClass('d-none');
+        }
+
+        // Signed-in users get the full interface, guests get a locked form.
+        $('#movieForm input, #movieForm select, #movieForm button').prop('disabled', !signedIn);
+        $('#reviewLockHint').toggleClass('d-none', signedIn);
+        $('#reviewSignedInHint').toggleClass('d-none', !signedIn);
+
+        $('#authMessage')
+            .removeClass('alert-success alert-danger')
+            .addClass(signedIn ? 'alert-success' : 'alert-info')
+            .text(signedIn
+                ? 'Signed in as ' + user.email + '.'
+                : 'You are browsing as a guest. Sign in to add your own ratings.');
+    }
+
+    /* sign-in form validation */
+    function validateSignIn() {
+        const email = $('#signInEmail').val().trim();
+        const password = $('#signInPassword').val();
+        const name = $('#signInName').val().trim();
+
+        let emailError = '';
+        let passwordError = '';
+
+        if (!email) {
+            emailError = 'E-mail is required';
+        } else if (!emailPattern.test(email)) {
+            emailError = 'Please enter a valid e-mail address';
+        }
+
+        if (!password) {
+            passwordError = 'Password is required';
+        } else if (password.length < 6) {
+            passwordError = 'Password must be at least 6 characters long';
+        }
+
+        $('#signInEmailError').text(emailError);
+        $('#signInPasswordError').text(passwordError);
+        $('#signInEmail').toggleClass('is-invalid', !!emailError).toggleClass('is-valid', !emailError && !!email);
+        $('#signInPassword').toggleClass('is-invalid', !!passwordError).toggleClass('is-valid', !passwordError && !!password);
+
+        return !emailError && !passwordError;
+    }
+
+    $('#signInForm').on('submit', function (event) {
+        event.preventDefault();
+        if (!validateSignIn()) { return; }
+
+        const email = $('#signInEmail').val().trim();
+        const typedName = $('#signInName').val().trim();
+        const name = typedName || email.split('@')[0].replace(/[._-]+/g, ' ').replace(/\b\w/g, function (c) {
+            return c.toUpperCase();
+        });
+
+        // Only non-sensitive data is stored: name, e-mail and the login time.
+        setUser({ name: name, email: email, signedInAt: new Date().toISOString() });
+
+        this.reset();
+        $('#signInEmail, #signInPassword').removeClass('is-valid is-invalid');
+        renderUser();
+
+        const modalElement = document.getElementById('signInModal');
+        if (modalElement && window.bootstrap) {
+            window.bootstrap.Modal.getOrCreateInstance(modalElement).hide();
+        }
+    });
+
+    $('#signInForm input').on('input', validateSignIn);
+
+    /* sign out */
+    $(document).on('click', '#signOutBtn, #accountSignOut', function () {
+        clearUser();
+        renderUser();
+        $('#authMessage')
+            .removeClass('alert-success alert-danger')
+            .addClass('alert-info')
+            .text('You have been signed out. The saved session was removed from localStorage.');
+    });
+
+    renderUser();
+});
+
+/* Highlight the current page in the navigation bar */
+$(function () {
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    $('.nav-menu a').each(function () {
+        const href = ($(this).attr('href') || '').split('#')[0];
+        if (href === path) {
+            $(this).addClass('active').attr('aria-current', 'page');
+        }
+    });
 });

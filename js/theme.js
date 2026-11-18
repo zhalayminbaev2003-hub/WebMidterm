@@ -13,6 +13,14 @@
         }
     }
 
+    function storeTheme(theme) {
+        try {
+            window.localStorage.setItem(STORAGE_KEY, theme);
+        } catch (error) {
+            /* storage is not available - the theme still works for this page view */
+        }
+    }
+
     function preferredTheme() {
         var stored = readStoredTheme();
         if (stored === 'light' || stored === 'dark') {
@@ -43,7 +51,13 @@
         toggle: function () {
             var next = currentTheme === 'dark' ? 'light' : 'dark';
             applyTheme(next);
+            storeTheme(next);
             return next;
+        },
+        set: function (theme) {
+            applyTheme(theme);
+            storeTheme(theme);
+            return currentTheme;
         }
     };
 })(window, document);
