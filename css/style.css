@@ -1,28 +1,70 @@
+/* CinemaHub - global styles */
+
+/* Design tokens */
 :root {
     --main-bg: #141414;
     --text-color: #f5f5f5;
+    --muted-color: #b9b9b9;
     --accent-color: #e50914;
+    --accent-hover: #b20710;
     --header-bg: rgba(20, 20, 20, 0.95);
+    --surface: #222;
+    --surface-alt: #1a1a1a;
+    --panel-bg: rgba(17, 17, 17, 0.85);
+    --border-color: #333;
+    --overlay: rgba(0, 0, 0, 0.8);
+    --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    --radius: 10px;
 }
 
+/* Light theme is activated by the data-theme attribute set from js/theme.js */
+
+/* Base layout */
 body {
     font-family: 'Roboto', sans-serif;
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.8),
-            rgba(0, 0, 0, 0.8)
-        ),
-        url('https://i.pinimg.com/736x/6c/a7/84/6ca78467ea1b617ccbab3c5df940eb9a.jpg')
-        center / cover
-        fixed
-        no-repeat;
+    background-color: var(--main-bg);
+    background-image:
+        linear-gradient(var(--overlay), var(--overlay)),
+        url('../images/background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 
     color: var(--text-color);
     margin: 0;
     padding: 0;
     padding-top: 70px;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+main {
+    flex: 1;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+}
+
+a {
+    color: var(--accent-color);
+}
+
+.text-muted-custom {
+    color: var(--muted-color) !important;
+}
+
+/* Bootstrap dark components adapted to the light theme */
+
+
+
+/* The hero text is white on the dark theme, so it has to follow the text colour */
+
+/* Header & navigation */
 .header {
     position: fixed;
     top: 0;
@@ -30,20 +72,29 @@ body {
     width: 100%;
 
     background-color: var(--header-bg);
+    backdrop-filter: blur(8px);
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
 
     padding: 15px 50px;
 
     z-index: 1000;
+    box-shadow: var(--shadow);
 }
 
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--accent-color);
+    white-space: nowrap;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
 }
 
 .nav-menu a {
@@ -60,6 +111,14 @@ body {
     color: var(--accent-color);
 }
 
+/* Current page highlight */
+.nav-menu a.active {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 3px;
+}
+
+/* Buttons, sections & shared components */
 .hero {
     height: 60vh;
     background: transparent;
@@ -75,21 +134,43 @@ body {
 }
 
 .custom-btn:hover {
-    background-color: #b20710;
+    background-color: var(--accent-hover);
     color: #fff;
 }
 
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.panel {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.tag-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    margin: 3px 4px 3px 0;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    background-color: var(--surface-alt);
+    border: 1px solid var(--border-color);
+    color: var(--muted-color);
+}
+
+/* Movie cards, gallery & lightbox */
 .movie-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
-
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
 .movie-card {
-    background-color: #222;
+    background-color: var(--surface);
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -106,6 +187,10 @@ body {
     height: 520px;
     object-fit: cover;
     display: block;
+}
+
+.movie-card.api-card img {
+    height: 320px;
 }
 
 .rating-badge {
@@ -132,7 +217,7 @@ body {
 }
 
 .movie-card:nth-child(even) .movie-info {
-    background-color: #1a1a1a;
+    background-color: var(--surface-alt);
 }
 
 .movie-overlay {
@@ -156,9 +241,7 @@ body {
     opacity: 0;
     visibility: hidden;
 
-    transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .movie-card:hover .movie-overlay {
@@ -178,67 +261,7 @@ body {
     margin: 5px 0;
 }
 
-.footer {
-    background-color: #000;
-    padding: 25px;
-    margin-top: 40px;
-}
-
-.social-links a {
-    color: var(--accent-color);
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-.social-links a:hover {
-    color: #fff;
-}
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    .nav-menu {
-        margin-top: 15px;
-    }
-
-    body {
-        padding-top: 110px;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-menu {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .nav-menu a {
-        margin: 5px 0;
-    }
-
-    body {
-        padding-top: 180px;
-    }
-}
-
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-}
-
-.footer {
-    margin-top: auto;
-}
-
+/* Gallery */
 .gallery-item img {
     width: 100%;
     height: 320px;
@@ -252,6 +275,32 @@ main {
     transform: scale(1.05);
 }
 
+#posterGallery .gallery-item {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+    cursor: pointer;
+}
+
+#posterGallery .gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: initial;
+}
+
+#posterGallery .gallery-item:hover {
+    border-color: white;
+}
+
+/* Lightbox */
 .gallery-lightbox {
     position: fixed;
     inset: 0;
@@ -269,7 +318,7 @@ main {
 }
 
 .gallery-lightbox button {
-    background: #e50914;
+    background: var(--accent-color);
     color: white;
     border: none;
     padding: 12px;
@@ -282,65 +331,90 @@ main {
     right: 20px;
 }
 
+/* Footer */
+.footer {
+    background-color: #000;
+    color: #cfcfcf;
+    padding: 25px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+
+.footer p {
+    margin-bottom: 6px;
+}
+
+.footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+    .header {
+        flex-wrap: wrap;
+        padding: 12px 25px;
+    }
+
+    body {
+        padding-top: 110px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .nav-menu {
+        margin-top: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    body {
+        padding-top: 150px;
+    }
+
+    .movie-card img {
+        height: 400px;
+    }
+}
+
 @media (max-width: 600px) {
     .gallery-lightbox img {
         max-width: 55%;
     }
 }
 
-
-#posterGallery .gallery-item {
-    width: 100%;
-    height: 450px;
-    padding: 0;
-    background: #151515;
-    border: 2px solid #e50914;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-#posterGallery .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-#posterGallery .gallery-item:hover {
-    border-color: white;
-}
-
-@media (max-width: 768px) {
-    #posterGallery .gallery-item {
-        height: 400px;
+@media (max-width: 480px) {
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-}
 
+    .nav-menu a {
+        margin: 5px 0;
+    }
 
-#posterGallery .gallery-item {
-    width: 100%;
-    height: auto;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    border: 2px solid #e50914;
-    border-radius: 12px;
-    overflow: hidden;
-    display: block;
-    cursor: pointer;
-}
+    .nav-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
-#posterGallery .gallery-item img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: none;
-    object-fit: initial;
-}
+    body {
+        padding-top: 215px;
+    }
 
-#posterGallery .gallery-item:hover {
-    border-color: white;
+    .movie-card img {
+        height: 320px;
+    }
 }
