@@ -280,6 +280,14 @@ $(function () {
         if (signedIn) {
             $('#userInitial').text(initials(user.name));
             $('#userNameLabel').text(user.name);
+            $('#accountCard').removeClass('d-none');
+            $('#guestCard').addClass('d-none');
+            $('#accountAvatar').text(initials(user.name));
+            $('#accountTitle').text('Welcome back, ' + user.name + '!');
+            $('#accountText').text('Signed in as ' + user.email + '.');
+        } else {
+            $('#accountCard').addClass('d-none');
+            $('#guestCard').removeClass('d-none');
         }
     }
 

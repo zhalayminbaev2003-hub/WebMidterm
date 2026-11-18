@@ -86,7 +86,29 @@
             </div>
         </section>
 
-                <section class="container my-5">
+        <section class="container my-5">
+            <h2 class="section-title text-center">Your account</h2>
+
+            <div class="panel account-card d-none" id="accountCard">
+                <span class="account-avatar" id="accountAvatar" aria-hidden="true">C</span>
+                <div>
+                    <h3 class="mb-1" id="accountTitle">Welcome back!</h3>
+                    <p class="mb-0 text-muted-custom" id="accountText"></p>
+                </div>
+                <button class="btn btn-outline-light ms-auto" id="accountSignOut" type="button">Sign out</button>
+            </div>
+
+            <div class="panel d-none" id="guestCard">
+                <h3 class="mb-1">You are not signed in</h3>
+                <p class="text-muted-custom">
+                    Sign in to add your own ratings and to keep your session between visits.
+                </p>
+                <button class="btn custom-btn" type="button"
+                        data-bs-toggle="modal" data-bs-target="#signInModal">Sign in</button>
+            </div>
+        </section>
+
+        <section class="container my-5">
             <h2 class="section-title text-center">On TV today</h2>
             <p class="text-center text-muted-custom">
                 Live schedule loaded with <code>fetch()</code> from the free
