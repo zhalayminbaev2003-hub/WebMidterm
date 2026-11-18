@@ -18,6 +18,20 @@
 }
 
 /* Light theme is activated by the data-theme attribute set from js/theme.js */
+html[data-theme="light"] {
+    --main-bg: #f2f4f8;
+    --text-color: #16181d;
+    --muted-color: #4c5158;
+    --accent-color: #d90429;
+    --accent-hover: #b00320;
+    --header-bg: rgba(255, 255, 255, 0.95);
+    --surface: #ffffff;
+    --surface-alt: #f1f3f8;
+    --panel-bg: rgba(255, 255, 255, 0.92);
+    --border-color: #d6d9e0;
+    --overlay: rgba(255, 255, 255, 0.82);
+    --shadow: 0 12px 30px rgba(16, 20, 28, 0.12);
+}
 
 /* Base layout */
 body {
@@ -59,10 +73,32 @@ a {
 }
 
 /* Bootstrap dark components adapted to the light theme */
+html[data-theme="light"] .table-dark {
+    --bs-table-bg: #ffffff;
+    --bs-table-color: #16181d;
+    --bs-table-striped-bg: #f4f6fa;
+    --bs-table-striped-color: #16181d;
+    --bs-table-hover-bg: #e9ecf3;
+    --bs-table-hover-color: #16181d;
+    --bs-border-color: #d6d9e0;
+}
 
+html[data-theme="light"] .btn-outline-light {
+    color: #16181d;
+    border-color: #16181d;
+}
 
+html[data-theme="light"] .btn-outline-light:hover {
+    background-color: #16181d;
+    color: #ffffff;
+}
 
 /* The hero text is white on the dark theme, so it has to follow the text colour */
+html[data-theme="light"] .hero h1,
+html[data-theme="light"] .hero p,
+html[data-theme="light"] .hero .text-light {
+    color: var(--text-color) !important;
+}
 
 /* Header & navigation */
 .header {
@@ -340,6 +376,9 @@ a {
     text-align: center;
 }
 
+html[data-theme="light"] .footer {
+    background-color: #1b1e24;
+}
 
 .footer p {
     margin-bottom: 6px;
