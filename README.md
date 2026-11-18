@@ -1,127 +1,170 @@
-# CinemaHub - Midterm Project
-
-## Turganbay Islambek --- My Contribution
-For this midterm defense, I was responsible for setting up the core layout, the Home page, and the Movie Catalog. 
-
-Here is exactly what I did step-by-step:
-* **Project Setup:** Created the initial HTML structure, linked Bootstrap 5, and connected our global `style.css`.
-* **Home Page (`index.html`):** Built the navigation menu (header), the main welcome banner (Hero section), and the "Popular Films" grid.
-* **Movie Catalog (`movies.html`):** Designed the layout for the movies page using CSS Grid. 
-* **Interactive Elements:** Implemented the `:hover` overlay effect on the movie cards so that when a user hovers over a movie poster, it displays the year, duration, age limit, and rating.
-
-## Almanzor Kamzeyev --- My Contribution
-
-For this midterm defense, I was responsible for creating the **Trailers page**, styling the **CinemaHub website**, and adding **responsive design**.
-
-Here is exactly what I did step-by-step:
-
-- **Trailers Page (`trailers.html`)**: Created the page structure, navigation, footer, and added movie trailers using YouTube `iframe` elements.
-- **Bootstrap Grid**: Used `row`, `col-md-6`, `g-4`, and `ratio ratio-16x9` classes to create a responsive trailer layout.
-- **Main Styling (`style.css`)**: Added colors, background, header, navigation, movie cards, buttons, rating badges, overlays, hover effects, and footer styles.
-- **Flexbox and CSS Grid**: Used Flexbox for the header layout and CSS Grid for movie cards.
-- **Responsive Design**: Added `@media` queries for 768px and 480px screens so the navigation and page layout adapt to tablets and mobile devices.
-- **Interactive Elements**: Added `:hover` effects for links, cards, buttons, and movie overlays.
-
-## Nurkhan Karashev — My Contribution
-
-In this project, I was responsible for completing the site structure and adding the interactive pages: **Reviews** and **Contact**.
-
-Here is what I worked on:
-
-Reviews Page reviews.html: Created a clean, responsive layout featuring the "Top Movies Ranking" table with ratings, directors, and release years. Integrated Bootstrap styling to ensure it works smoothly across all screen sizes.
-
-Contact & Feedback Page contact.html: Built a full feedback form containing inputs for name and email, a dropdown menu to suggest movie genres, and a text area for user messages or reviews.
-
-Layout & Navigation: Aligned both pages with the main site style by reusing the core header navigation, custom color scheme, and sticky footer setup.
-
-Git Workflow: Structured the development history with clean, step-by-step commits in GitHub to keep the repository well-organized for team collaboration.
-
-## Link to the website
-https://zhalayminbaev2003-hub.github.io/WebMidterm/
-
 # CinemaHub - Web Development Endterm Project
 
-## About the Project
+CinemaHub is a movie information website created for our Web Development course. The project started
+during the midterm and was extended for the endterm with the features required by the
+**Final Project Requirements**: a light/dark theme, a localStorage sign-in, a jQuery FAQ accordion and
+a live public API integration.
 
-CinemaHub is a movie website created for our Web Development course.
+**Live website:** https://zhalayminbaev2003-hub.github.io/WebMidterm/
+**Repository:** https://github.com/zhalayminbaev2003-hub/WebMidterm
 
-We started this project during the midterm. For the endterm, we improved the same website by adding JavaScript and jQuery features.
-
-Users can explore movies, watch trailers, check ratings, and send feedback.
+---
 
 ## Group Members
 
+- Turganbay Islambek
 - Almanzor Kamzeyev
 - Nurkhan Karashev
-- Turganbay Islambek
 
-## Website Pages
+---
 
-Our website has 5 pages:
+## Project Topic
 
-1. **Home** - Popular movies and image gallery.
-2. **Movies** - Movie catalog with search and category filters.
-3. **Trailers** - Movie trailers from YouTube.
-4. **Reviews** - Movie ratings and CRUD table.
-5. **Contact** - Registration and feedback form.
+A cinema portal where a visitor can browse a hand-picked movie catalog, watch official trailers, check
+and edit a personal ranking of films, read answers to the most common questions, get live information
+about titles and TV schedules from an open API, and contact the team.
 
-## Endterm Features
+---
 
-We added the following features:
+## Website Pages (6)
 
-- Registration form validation
-- Email validation using RegEx
-- Password strength indicator
-- Password confirmation
-- Real-time movie search
-- Movie category filters
-- CRUD operations (Add, View, Edit, Delete)
-- Local storage for movie data
-- Image gallery with 9 movie posters
-- Lightbox with navigation buttons
-- jQuery animations
+| # | Page | File | Content |
+|---|------|------|---------|
+| 1 | Home | `index.html` | Hero banner, popular films, account panel, live TV schedule, poster gallery with lightbox |
+| 2 | Movies | `movies.html` | Movie catalog, live search, genre filters, **TVMaze API search** |
+| 3 | Trailers | `trailers.html` | Official trailers embedded from YouTube (`iframe`) |
+| 4 | Reviews | `reviews.html` | Ranking table with Add / Edit / Delete (CRUD) stored in localStorage |
+| 5 | FAQ | `faq.html` | 9 questions with a jQuery `slideToggle()` accordion |
+| 6 | Contact | `contact.html` | Feedback form, validation, password strength bar, session panel |
+
+Every page has the same navigation bar (with the active page highlighted), the same footer and the same
+scripts, and all links lead to existing pages.
+
+---
+
+## Implemented Features
+
+### HTML & CSS
+- Semantic HTML5 structure (`header`, `nav`, `main`, `section`, `article`, `footer`, `label`, `table`).
+- All styling lives in one external file: `css/style.css`.
+- Flexbox for the header / account panel, CSS Grid for the movie cards and the schedule list.
+- Design tokens (CSS variables) for colours, spacing, radius and shadows.
+- Responsive layout with media queries for 992px, 768px, 600px and 480px (desktop, tablet, mobile).
+- All images, icons, jQuery and Bootstrap are stored inside the project folder (`images/`, `js/`, `vendor/`).
+
+### JavaScript
+- **Light / dark theme toggle** (`js/theme.js` + `js/script.js`).
+  The chosen theme is stored in `localStorage` (`cinemahubTheme`), applied on every page before the
+  first paint and re-applied after a refresh.
+- **Sign-in / sign-out with localStorage** (`js/script.js`).
+  A modal sign-in form validates the display name, e-mail (RegExp) and password (min. 6 characters).
+  Only non-sensitive data (name, e-mail, login time) is stored under `cinemahubUser`; the user stays
+  signed in after a refresh, the navigation bar shows the user chip instead of the *Sign In* button,
+  the Reviews page unlocks the rating form for signed-in users, and the *Sign Out* button removes the
+  stored session.
+
+### jQuery
+- **FAQ accordion** on `faq.html`: 9 project-related questions, the answer is opened and closed with
+  jQuery `.slideToggle()`, the animation is smooth (350 ms) and a `+` / `−` indicator shows the state.
+  *Expand all* / *Collapse all* buttons are included as well.
+- Existing jQuery features from the midterm were kept: form validation, gallery lightbox with
+  `fadeIn/fadeOut`, live movie search, category filters and the CRUD table.
+
+### API integration
+- **TVMaze API** (https://www.tvmaze.com/api) - free, no API key, CORS enabled, therefore it also works
+  on the published GitHub Pages site.
+  - `GET /search/shows?q=...` - live title search on the Movies page.
+  - `GET /shows/random` - "Random title" button.
+  - `GET /schedule?country=US&date=YYYY-MM-DD` - "On TV today" widget on the Home page.
+- All requests are made with `fetch()`, the JSON answer is processed and rendered with jQuery.
+- User interaction: search, sorting (A-Z / rating / year), random pick and a date picker.
+- Error handling: `response.ok` check, 12-second `AbortController` timeout, `try/catch` with friendly
+  messages for network errors, timeouts and empty results.
+- Deep link: opening `movies.html?q=matrix` runs the search immediately, which is handy for the defense.
+
+---
+
+## Report
+
+The full endterm report (objectives, structure, features, development process, contribution of every
+member, screenshots and links) is in [`REPORT.md`](REPORT.md); the screenshots are in `report/images/`.
+
+---
 
 ## Technologies Used
 
-- HTML5
-- CSS3
-- Bootstrap 5
-- JavaScript
-- jQuery
-- Git and GitHub
+HTML5, CSS3 (Flexbox, Grid, variables), Bootstrap 5.3 (local copy), JavaScript (ES5-compatible syntax
+inside jQuery), jQuery 3.7.1 (local copy), TVMaze public API, Git and GitHub Pages.
+
+---
 
 ## Group Contributions
 
-### Almanzor Kamzeyev
+### Turganbay Islambek
+- Midterm: project setup, global HTML structure, Home page, movie catalog layout, hover overlay.
+- Endterm: light/dark theme toggle with `localStorage` persistence (`js/theme.js`), the API layer
+  (`js/api.js`), the "Find a title online" block on the Movies page and the "On TV today" widget on the
+  Home page, final integration of the shared navigation bar and footer.
 
-- Added the movie gallery
-- Created the lightbox HTML
-- Improved gallery CSS
-- Fixed the footer position
+### Almanzor Kamzeyev
+- Midterm: Trailers page, global styling (`css/style.css`), Flexbox/Grid layout, responsive design.
+- Endterm: the FAQ page with the jQuery `slideToggle()` accordion, the design-token refactor of the
+  stylesheet into light/dark themes, and the styling of all new components (theme button, user chip,
+  sign-in modal, API panels, schedule list).
 
 ### Nurkhan Karashev
+- Midterm: Reviews page, Contact page, form validation, password strength indicator, Git workflow.
+- Endterm: the localStorage sign-in / sign-out logic with input validation, the signed-in / guest
+  interface (navigation user chip, account panel on the Home page, locked rating form on the Reviews
+  page), and the update of the README and the project report.
 
-- Added password fields to the Contact form
-- Added form validation
-- Added password strength indicator
-- Added feedback messages
-- Worked on gallery JavaScript
-
-### Turganbay Islambek
-
-- Added movie search
-- Added category filters
-- Implemented CRUD operations
-- Added local storage
+---
 
 ## Git Workflow
 
-We worked on the same GitHub repository and used separate commits for our changes. Each group member was responsible for different parts of the project.
+All work is done in one shared GitHub repository. Every feature is committed separately with a clear
+message, so the commit history shows who implemented which part of the project.
 
-## Published Website
+```
+git log --oneline
+```
 
-https://zhalayminbaev2003-hub.github.io/WebMidterm/
+---
 
-## Conclusion
+## How to Run Locally
 
-During this project, we learned how to use JavaScript and jQuery to make our website more interactive. We also practiced working with GitHub as a team.
+```bash
+# open the folder in a simple web server
+python -m http.server 8000
+# then visit http://localhost:8000
+```
+
+The site also works by double-clicking `index.html` (file://). The API block needs an internet
+connection.
+
+---
+
+## Folder Structure
+
+```
+WebMidterm/
+├── index.html            Home page
+├── movies.html           Catalog + TVMaze API search
+├── trailers.html         YouTube trailers
+├── reviews.html          CRUD ranking table
+├── faq.html              jQuery FAQ accordion
+├── contact.html          Feedback form
+├── README.md             This file
+├── REPORT.md             Endterm project report (with screenshots in report/images/)
+├── css/
+│   └── style.css         All styles + light/dark themes
+├── js/
+│   ├── jquery.min.js     jQuery 3.7.1 (local copy)
+│   ├── theme.js          Theme manager (applies the saved theme)
+│   ├── api.js            TVMaze API layer (fetch + error handling)
+│   └── script.js         Forms, gallery, search, CRUD, auth, FAQ, API rendering
+├── images/               Posters and the page background
+├── report/images/        Screenshots used in the report
+└── vendor/
+    └── bootstrap/        Bootstrap 5.3 CSS + JS bundle (local copy)
+```
