@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CinemaHub - frequently asked questions with a jQuery slideToggle accordion.">
+    <title>CinemaHub - FAQ</title>
+    <meta name="version" content="3">
+
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=3">
+
+    <script src="js/theme.js?v=3"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">CinemaHub</div>
+
+        <nav class="nav-menu" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="trailers.html">Trailers</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+            </header>
+
+    <main>
+        <section class="container mt-5 mb-5">
+            <h2 class="section-title text-center">Frequently Asked Questions</h2>
+            <p class="text-center text-muted-custom mb-4">
+                Click a question to open or close the answer.
+            </p>
+
+            <div class="faq-toolbar">
+                <button id="expandAll" class="btn btn-sm btn-outline-light" type="button">Expand all</button>
+                <button id="collapseAll" class="btn btn-sm btn-outline-light" type="button">Collapse all</button>
+            </div>
+
+            <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>What is CinemaHub and who is it for?</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>CinemaHub is a movie information website built for the Web Development course. It collects a small hand-picked catalog of popular films, shows their trailers, keeps a ranking table with your own ratings and lets you send feedback to the team. It is useful for students who want to see how HTML, CSS, jQuery and a public API work together in one real project.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>How do I switch between the light and the dark theme?</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Use the round button with the moon icon in the top navigation bar. The theme is stored in localStorage under the key "cinemahubTheme", so it is applied again every time you open or refresh any page of the site - the choice is remembered across the whole website.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>Do I need an account to use the site?</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>No. All content is available to guests. However, the rating form on the Reviews page is unlocked only after you sign in, so that we can show a different interface to signed-in users. The sign-in is a demo sign-in: only your display name, e-mail address and login time are stored in localStorage, and the password is never saved.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>Why does the sign-in ask for an e-mail and a password?</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>The form validates the input the same way a real login would: the e-mail must match a regular expression pattern and the password must be at least six characters long. Validation messages are shown under each field, and the Sign In button only works when every field is valid.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>Where does the movie data come from?</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>The "Find a title online" block on the Movies page and the "On TV today" block on the Home page use the free TVMaze API (https://www.tvmaze.com/api). The data is requested with fetch(), parsed as JSON and rendered into the page with jQuery. No API key is needed, which is why it also works on the published GitHub Pages version of the site.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>What happens when the API cannot be reached?</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Every request has a 12 second timeout and a try/catch block. If the server answers with an error status, if the connection drops or if the answer takes too long, the status line explains the problem instead of leaving an empty page, and you can simply press Search again to retry.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>Can I change or delete the movies in the ranking table?</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes. If you are signed in you can add a new row, edit an existing one or delete it with the buttons in the Actions column. Every change is written to localStorage, so your personal list stays in the browser even after a refresh. The Sign Out button clears the session.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>Is the site responsive and does it work on a phone?</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes. The layout is built with CSS Flexbox for the header and CSS Grid for the movie cards, and there are media queries for tablets (992px, 768px) and mobile phones (600px, 480px). The navigation bar wraps, the movie cards become one column and the trailer players keep their 16:9 ratio.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>Who built the project?</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>The project is built by Turganbay Islambek, Almanzor Kamzeyev and Nurkhan Karashev. The README file in the repository describes the contribution of every member.</p>
+                </div>
+            </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer text-center">
+        <p>&copy; 2026 CinemaHub. All rights reserved.</p>
+
+        <p class="mb-1">
+            <a href="index.html">Home</a> &middot;
+            <a href="movies.html">Movies</a> &middot;
+            <a href="trailers.html">Trailers</a> &middot;
+            <a href="reviews.html">Reviews</a> &middot;
+            <a href="faq.html">FAQ</a> &middot;
+            <a href="contact.html">Contact</a>
+        </p>
+    </footer>
+
+    <script src="js/jquery.min.js?v=3"></script>
+    <script src="vendor/bootstrap/bootstrap.bundle.min.js?v=3"></script>
+    <script src="js/api.js?v=3"></script>
+    <script src="js/script.js?v=3"></script>
+</body>
+</html>
