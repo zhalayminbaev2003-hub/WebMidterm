@@ -127,7 +127,28 @@
             </div>
         </section>
 
-            </main>
+        <section class="container my-5">
+            <h2 class="section-title text-center">Find a title online</h2>
+
+            <div class="api-panel">
+                <form id="apiSearchForm" class="api-search">
+                    <input type="search" id="apiQuery" class="form-control"
+                           placeholder="Search e.g. Matrix, Batman, Breaking Bad..." aria-label="Search the TVMaze API">
+                    <button type="submit" class="btn custom-btn">Search</button>
+                    <button type="button" id="randomMovieBtn" class="btn btn-outline-light">Random title</button>
+                    <select id="apiSort" class="form-select" style="max-width:220px" aria-label="Sort the results">
+                        <option value="name">Sort: A-Z</option>
+                        <option value="rating">Sort: highest rating</option>
+                        <option value="year">Sort: newest first</option>
+                    </select>
+                </form>
+
+                <p id="apiStatus" class="api-status"></p>
+                <div id="apiResults" class="movie-grid"></div>
+            </div>
+        </section>
+
+    </main>
 
     <footer class="footer text-center">
         <p>&copy; 2026 CinemaHub. All rights reserved.</p>
@@ -143,6 +164,7 @@
     </footer>
 
     <script src="js/jquery.min.js?v=1"></script>
+    <script src="js/api.js?v=1"></script>
     <script src="js/script.js?v=1"></script>
 </body>
 </html>

@@ -69,7 +69,25 @@
             </div>
         </section>
 
-                        <section class="container my-5">
+                <section class="container my-5">
+            <h2 class="section-title text-center">On TV today</h2>
+            <p class="text-center text-muted-custom">
+                Live schedule loaded with <code>fetch()</code> from the free
+                <a href="https://www.tvmaze.com/api" target="_blank" rel="noopener">TVMaze API</a>.
+            </p>
+
+            <div class="api-panel">
+                <form id="scheduleForm" class="api-search">
+                    <input type="date" id="scheduleDate" class="form-control" aria-label="Choose a date">
+                    <button type="submit" class="btn custom-btn">Show schedule</button>
+                </form>
+
+                <p id="scheduleStatus" class="api-status"></p>
+                <ul id="scheduleList" class="schedule-list"></ul>
+            </div>
+        </section>
+
+        <section class="container my-5">
             <h2 class="section-title text-center">Movie Gallery</h2>
 
             <div id="posterGallery" class="row g-3">
@@ -144,6 +162,7 @@
     </footer>
 
     <script src="js/jquery.min.js?v=1"></script>
+    <script src="js/api.js?v=1"></script>
     <script src="js/script.js?v=1"></script>
 </body>
 </html>

@@ -370,6 +370,221 @@ $(function () {
     renderUser();
 });
 
+/* TVMaze API integration */
+$(function () {
+    const api = window.CinemaHub ? window.CinemaHub.api : null;
+    if (!api) { return; }
+
+    let currentResults = [];
+
+    /* helpers */
+    function setStatus(message, type) {
+        $('#apiStatus')
+            .removeClass('loading success error')
+            .addClass(type || '')
+            .text(message);
+    }
+
+    function showSkeletons(count) {
+        const $box = $('#apiResults').empty();
+        for (let i = 0; i < count; i++) {
+            $('<div class="skeleton">').appendTo($box);
+        }
+    }
+
+    function buildCard(show) {
+        const $card = $('<div class="movie-card api-card">');
+
+        if (show.image) {
+            $('<img>').attr('src', show.image).attr('alt', show.name).attr('loading', 'lazy').appendTo($card);
+        } else {
+            $('<div class="skeleton" style="height:320px">').appendTo($card);
+        }
+
+        $('<span class="rating-badge">')
+            .text(show.rating !== null ? show.rating.toFixed(1) : 'N/A')
+            .appendTo($card);
+
+        const $info = $('<div class="movie-info">');
+        $('<h3>').text(show.name).appendTo($info);
+        $('<p>').text((show.genres.join(', ') || 'Unclassified') + ' • ' + show.year).appendTo($info);
+        $('<p class="api-summary">').text(show.summary).appendTo($info);
+
+        const $tags = $('<div>');
+        show.genres.slice(0, 3).forEach(function (genre) {
+            $('<span class="tag-pill">').text(genre).appendTo($tags);
+        });
+        $tags.appendTo($info);
+
+        if (show.url) {
+            $('<a>').attr('href', show.url).attr('target', '_blank').attr('rel', 'noopener')
+                .attr('class', 'api-link').text('Open on TVMaze →').appendTo($info);
+        }
+
+        $card.append($info);
+        return $card;
+    }
+
+    function renderResults(list) {
+        currentResults = list;
+        const $box = $('#apiResults').empty();
+
+        if (!list.length) {
+            $('<p class="api-status">').text('Nothing found for this request. Try another title.').appendTo($box);
+            return;
+        }
+
+        list.forEach(function (show) {
+            $box.append(buildCard(show));
+        });
+    }
+
+    function sortResults(mode) {
+        if (mode === 'rating') {
+            currentResults.sort(function (a, b) {
+                return (b.rating || 0) - (a.rating || 0);
+            });
+        } else if (mode === 'year') {
+            currentResults.sort(function (a, b) {
+                return String(b.year).localeCompare(String(a.year));
+            });
+        } else {
+            currentResults.sort(function (a, b) {
+                return a.name.localeCompare(b.name);
+            });
+        }
+        renderResults(currentResults);
+    }
+
+    /* search */
+    function runSearch(query) {
+        setStatus('Loading titles from the TVMaze API…', 'loading');
+        showSkeletons(3);
+
+        api.searchShows(query)
+            .then(function (results) {
+                renderResults(results);
+                if (results.length) {
+                    setStatus('Found ' + results.length + ' title(s) for "' + query + '".', 'success');
+                } else {
+                    setStatus('No titles matched "' + query + '".', 'error');
+                }
+            })
+            .catch(function (error) {
+                $('#apiResults').empty();
+                setStatus(error.message || 'The request failed. Please try again.', 'error');
+            });
+    }
+
+    $('#apiSearchForm').on('submit', function (event) {
+        event.preventDefault();
+        const query = $('#apiQuery').val().trim();
+        if (!query) {
+            setStatus('Please type a movie or series name first.', 'error');
+            return;
+        }
+        runSearch(query);
+    });
+
+    /* Deep link: ?q=matrix runs the search on load */
+    if ($('#apiQuery').length) {
+        const deepLink = new URLSearchParams(window.location.search).get('q');
+        if (deepLink) {
+            $('#apiQuery').val(deepLink);
+            runSearch(deepLink);
+        }
+    }
+
+    /* random title (refresh) */
+    $('#randomMovieBtn').on('click', function () {
+        setStatus('Picking a random title…', 'loading');
+        showSkeletons(1);
+
+        api.randomShow()
+            .then(function (show) {
+                renderResults([show]);
+                setStatus('Random pick: ' + show.name + ' (' + show.year + ').', 'success');
+            })
+            .catch(function (error) {
+                $('#apiResults').empty();
+                setStatus(error.message || 'The request failed. Please try again.', 'error');
+            });
+    });
+
+    /* sorting / filtering of the loaded results */
+    $('#apiSort').on('change', function () {
+        if (!currentResults.length) {
+            setStatus('Search for a title first, then you can sort the results.', 'error');
+            return;
+        }
+        sortResults($(this).val());
+    });
+
+    /* TV schedule widget (home page) */
+    function todayISO() {
+        const now = new Date();
+        const offset = now.getTimezoneOffset();
+        return new Date(now.getTime() - offset * 60000).toISOString().slice(0, 10);
+    }
+
+    function loadSchedule(date) {
+        const $list = $('#scheduleList');
+        const $status = $('#scheduleStatus');
+
+        $status.removeClass('success error').addClass('loading').text('Loading the TV schedule…');
+        $list.empty();
+        $('<li class="schedule-item">').text('Loading…').appendTo($list);
+
+        api.schedule(date, 'US')
+            .then(function (items) {
+                $list.empty();
+                if (!items.length) {
+                    $('<li class="schedule-item">')
+                        .text('No TV shows are scheduled for this date.')
+                        .appendTo($list);
+                    $status.removeClass('loading').addClass('success')
+                        .text('The schedule for ' + date + ' is empty.');
+                    return;
+                }
+                items.forEach(function (item) {
+                    const $row = $('<li class="schedule-item">');
+                    $('<span class="schedule-time">').text(item.time || 'TBA').appendTo($row);
+                    const $info = $('<div>');
+                    $('<strong>').text(item.show.name).appendTo($info);
+                    if (item.episode && item.episode.name) {
+                        $('<div class="text-muted-custom">')
+                            .text('S' + item.episode.season + 'E' + item.episode.number + ' • ' + item.episode.name)
+                            .appendTo($info);
+                    }
+                    $('<div class="text-muted-custom">')
+                        .text((item.show.genres.join(', ') || 'TV') + ' • ' + item.show.year)
+                        .appendTo($info);
+                    $row.append($info);
+                    $list.append($row);
+                });
+                $status.removeClass('loading').addClass('success')
+                    .text(items.length + ' show(s) scheduled on ' + date + '.');
+            })
+            .catch(function (error) {
+                $list.empty();
+                $('<li class="schedule-item">')
+                    .text(error.message || 'The schedule could not be loaded.')
+                    .appendTo($list);
+                $status.removeClass('loading').addClass('error')
+                    .text('The TV schedule is unavailable right now. Please try again.');
+            });
+    }
+
+    if ($('#scheduleList').length) {
+        $('#scheduleDate').val(todayISO());
+        $('#scheduleForm').on('submit', function (event) {
+            event.preventDefault();
+            loadSchedule($('#scheduleDate').val() || todayISO());
+        });
+        loadSchedule(todayISO());
+    }
+});
+
 /* Highlight the current page in the navigation bar */
 $(function () {
     const path = window.location.pathname.split('/').pop() || 'index.html';
