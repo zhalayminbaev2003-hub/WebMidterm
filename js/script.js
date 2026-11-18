@@ -282,7 +282,6 @@ $(function () {
             $('#guestCard').removeClass('d-none');
         }
 
-        // Signed-in users get the full interface, guests get a locked form.
         $('#movieForm input, #movieForm select, #movieForm button').prop('disabled', !signedIn);
         $('#reviewLockHint').toggleClass('d-none', signedIn);
         $('#reviewSignedInHint').toggleClass('d-none', !signedIn);
@@ -295,7 +294,6 @@ $(function () {
                 : 'You are browsing as a guest. Sign in to add your own ratings.');
     }
 
-    /* sign-in form validation */
     function validateSignIn() {
         const email = $('#signInEmail').val().trim();
         const password = $('#signInPassword').val();
@@ -407,7 +405,6 @@ $(function () {
 
     let currentResults = [];
 
-    /* helpers */
     function setStatus(message, type) {
         $('#apiStatus')
             .removeClass('loading success error')
