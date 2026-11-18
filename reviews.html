@@ -49,7 +49,14 @@
         <section class="container mt-5 mb-5">
             <h2 class="section-title text-center">Top Movies Ranking</h2>
 
-                                    <form id="movieForm" class="row g-3 mb-4">
+            <p id="reviewLockHint" class="locked-hint d-none">
+                Please sign in from the navigation bar to add your own ratings - the form is locked for guests.
+            </p>
+            <p id="reviewSignedInHint" class="locked-hint d-none" style="border-left-color:#51cf66">
+                You are signed in, so you can add, edit and delete rows in the table below.
+            </p>
+
+            <form id="movieForm" class="row g-3 mb-4">
                 <div class="col-md-3">
                     <input id="movieTitle" class="form-control" placeholder="Movie title" required>
                 </div>
