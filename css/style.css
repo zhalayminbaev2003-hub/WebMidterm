@@ -154,6 +154,68 @@ html[data-theme="light"] .hero .text-light {
     padding-bottom: 3px;
 }
 
+/* Theme toggle & user menu */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background-color: var(--surface);
+    color: var(--text-color);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(20deg) scale(1.08);
+    border-color: var(--accent-color);
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 12px 5px 6px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    background-color: var(--surface);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+}
+
+.user-name {
+    font-size: 0.95rem;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 /* Buttons, sections & shared components */
 .hero {
     height: 60vh;
@@ -365,6 +427,93 @@ html[data-theme="light"] .hero .text-light {
     position: absolute;
     top: 20px;
     right: 20px;
+}
+
+/* Forms, tables & account panel */
+.form-panel {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 25px;
+}
+
+.form-control,
+.form-select {
+    background-color: var(--surface-alt);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.form-control::placeholder {
+    color: var(--muted-color);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--surface-alt);
+    border-color: var(--accent-color);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.2rem rgba(229, 9, 20, 0.2);
+}
+
+.form-label {
+    color: var(--text-color);
+}
+
+.form-text,
+small {
+    color: var(--muted-color);
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+    border-color: #28a745;
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.modal-content {
+    background-color: var(--surface);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--border-color);
+}
+
+.modal-backdrop.show {
+    opacity: 0.75;
+}
+
+.account-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.account-card .account-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.locked-hint {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 12px;
+    color: var(--muted-color);
 }
 
 /* Footer */
