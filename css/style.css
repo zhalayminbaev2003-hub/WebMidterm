@@ -516,6 +516,153 @@ small {
     color: var(--muted-color);
 }
 
+/* FAQ accordion */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--panel-bg);
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.faq-question:hover {
+    background-color: var(--surface-alt);
+}
+
+.faq-toggle {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 32px;
+    text-align: center;
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 20px 18px;
+    color: var(--muted-color);
+}
+
+.faq-answer p {
+    margin-bottom: 0;
+}
+
+.faq-toolbar {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-bottom: 18px;
+}
+
+/* API (TVMaze) blocks */
+.api-panel {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 25px;
+}
+
+.api-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.api-search input[type="search"],
+.api-search input[type="date"] {
+    flex: 1 1 240px;
+}
+
+.api-status {
+    margin: 15px 0;
+    min-height: 24px;
+    font-weight: 500;
+}
+
+.api-status.loading {
+    color: var(--muted-color);
+}
+
+.api-status.error {
+    color: #ff6b6b;
+}
+
+.api-status.success {
+    color: #51cf66;
+}
+
+.api-summary {
+    font-size: 0.9rem;
+    color: var(--muted-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.schedule-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--surface-alt);
+}
+
+.schedule-time {
+    font-weight: 700;
+    color: var(--accent-color);
+    min-width: 90px;
+}
+
+.skeleton {
+    background: linear-gradient(90deg, var(--surface-alt) 25%, var(--surface) 50%, var(--surface-alt) 75%);
+    background-size: 200% 100%;
+    animation: skeletonLoading 1.4s infinite;
+    border-radius: var(--radius);
+    height: 300px;
+}
+
+@keyframes skeletonLoading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
 /* Footer */
 .footer {
     background-color: #000;
