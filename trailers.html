@@ -1,77 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="CinemaHub - official movie trailers embedded from YouTube.">
     <title>CinemaHub - Trailers</title>
+    <meta name="version" content="1">
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=1">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
     <header class="header">
-        <div class="logo">CinemaHub</div>
-
-        <nav class="nav-menu">
+                <nav class="nav-menu" aria-label="Main navigation">
             <a href="index.html">Home</a>
             <a href="movies.html">Movies</a>
             <a href="trailers.html">Trailers</a>
             <a href="reviews.html">Reviews</a>
             <a href="contact.html">Contact</a>
         </nav>
+
+        <div class="nav-actions">
+            <button id="themeToggle" class="theme-toggle" type="button" title="Switch theme" aria-label="Switch theme">
+                <span id="themeIcon" aria-hidden="true">&#127769;</span>
+            </button>
+
+            <div class="user-menu">
+                <button id="signInBtn" class="btn btn-sm btn-outline-light" type="button"
+                        data-bs-toggle="modal" data-bs-target="#signInModal">Sign In</button>
+
+                <div id="userChip" class="user-chip d-none">
+                    <span class="user-avatar" id="userInitial" aria-hidden="true">C</span>
+                    <span class="user-name" id="userNameLabel">Guest</span>
+                    <button id="signOutBtn" class="btn btn-sm btn-outline-danger" type="button">Sign Out</button>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main class="container mt-5 mb-5">
+    <main>
+        <section class="container mt-5 mb-5">
+            <h2 class="section-title text-center">Latest Trailers</h2>
 
-        <h2 class="text-center mb-5">Latest Trailers</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h4 class="mb-3">Avengers: Doomsday</h4>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/irVNGjRFZGk"
+                                title="Avengers: Doomsday trailer"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
 
-        <div class="row g-4">
-
-            <div class="col-md-6">
-                <h4 class="mb-3">Avengers: Doomsday</h4>
-
-                <div class="ratio ratio-16x9">
-                    <iframe
-                        src="https://www.youtube.com/embed/irVNGjRFZGk"
-                        title="YouTube video"
-                        allowfullscreen>
-                    </iframe>
+                <div class="col-md-6">
+                    <h4 class="mb-3">Familia</h4>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/k-8rYKLZYuk"
+                                title="Familia trailer"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-md-6">
-                <h4 class="mb-3">Familia</h4>
-
-                <div class="ratio ratio-16x9">
-                    <iframe
-                        src="https://www.youtube.com/embed/k-8rYKLZYuk"
-                        title="YouTube video"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-
-        </div>
+        </section>
 
     </main>
 
     <footer class="footer text-center">
         <p>&copy; 2026 CinemaHub. All rights reserved.</p>
+
+        <p class="mb-1">
+            <a href="index.html">Home</a> &middot;
+            <a href="movies.html">Movies</a> &middot;
+            <a href="trailers.html">Trailers</a> &middot;
+            <a href="reviews.html">Reviews</a> &middot;
+            <a href="faq.html">FAQ</a> &middot;
+            <a href="contact.html">Contact</a>
+        </p>
     </footer>
 
+    <script src="js/jquery.min.js?v=1"></script>
+    <script src="js/script.js?v=1"></script>
 </body>
-
 </html>
