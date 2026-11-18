@@ -1,4 +1,3 @@
-/* CinemaHub - TVMaze API layer */
 (function (window) {
     'use strict';
 
@@ -7,7 +6,6 @@
 
     window.CinemaHub = window.CinemaHub || {};
 
-    /* fetch() wrapper with a timeout */
     function fetchJson(url) {
         if (!window.fetch) {
             return Promise.reject(new Error('This browser does not support fetch().'));
@@ -93,7 +91,6 @@
                 });
         },
 
-        /* Random title: GET /shows?page= */
         randomShow: function () {
             var page = 1 + Math.floor(Math.random() * 40);
             return fetchJson(API_BASE + '/shows?page=' + page)
@@ -106,7 +103,6 @@
                 });
         },
 
-        /* Schedule: GET /schedule?country=&date= */
         schedule: function (date, country) {
             var day = date || new Date().toISOString().slice(0, 10);
             return fetchJson(API_BASE + '/schedule?country=' + encodeURIComponent(country || 'US') + '&date=' + day)

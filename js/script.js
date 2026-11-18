@@ -1,6 +1,3 @@
-/* CinemaHub - shared scripts */
-
-/* Contact form validation */
 $(function () {
     const form = $('#registrationForm');
     if (form.length) {
@@ -61,7 +58,6 @@ $(function () {
     }
 });
 
-/* Poster gallery and lightbox */
 $(function () {
     const gallery = $('#posterGallery .gallery-item');
     if (gallery.length) {
@@ -103,7 +99,6 @@ $(function () {
     }
 });
 
-/* Movie search and category filters */
 $(function () {
     if ($('#movieSearch').length) {
         let category = 'all';
@@ -131,7 +126,6 @@ $(function () {
     }
 });
 
-/* CRUD table for the reviews page (localStorage) */
 $(function () {
     if ($('#movieTableBody').length) {
         const key = 'cinemahubMovies';
@@ -217,7 +211,6 @@ $(function () {
     }
 });
 
-/* Light / dark theme toggle */
 $(function () {
     function paintToggle(theme) {
         const isDark = theme === 'dark';
@@ -238,7 +231,6 @@ $(function () {
     });
 });
 
-/* Sign-in / sign-out (localStorage) */
 $(function () {
     const AUTH_KEY = 'cinemahubUser';
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -342,7 +334,6 @@ $(function () {
             return c.toUpperCase();
         });
 
-        // Only non-sensitive data is stored: name, e-mail and the login time.
         setUser({ name: name, email: email, signedInAt: new Date().toISOString() });
 
         this.reset();
@@ -357,7 +348,6 @@ $(function () {
 
     $('#signInForm input').on('input', validateSignIn);
 
-    /* sign out */
     $(document).on('click', '#signOutBtn, #accountSignOut', function () {
         clearUser();
         renderUser();
@@ -370,7 +360,6 @@ $(function () {
     renderUser();
 });
 
-/* FAQ accordion - jQuery .slideToggle() */
 $(function () {
     const $questions = $('.faq-question');
 
@@ -412,7 +401,6 @@ $(function () {
     }
 });
 
-/* TVMaze API integration */
 $(function () {
     const api = window.CinemaHub ? window.CinemaHub.api : null;
     if (!api) { return; }
@@ -498,7 +486,6 @@ $(function () {
         renderResults(currentResults);
     }
 
-    /* search */
     function runSearch(query) {
         setStatus('Loading titles from the TVMaze API…', 'loading');
         showSkeletons(3);
@@ -528,7 +515,6 @@ $(function () {
         runSearch(query);
     });
 
-    /* Deep link: ?q=matrix runs the search on load */
     if ($('#apiQuery').length) {
         const deepLink = new URLSearchParams(window.location.search).get('q');
         if (deepLink) {
@@ -537,7 +523,6 @@ $(function () {
         }
     }
 
-    /* random title (refresh) */
     $('#randomMovieBtn').on('click', function () {
         setStatus('Picking a random title…', 'loading');
         showSkeletons(1);
@@ -553,7 +538,6 @@ $(function () {
             });
     });
 
-    /* sorting / filtering of the loaded results */
     $('#apiSort').on('change', function () {
         if (!currentResults.length) {
             setStatus('Search for a title first, then you can sort the results.', 'error');
@@ -562,7 +546,6 @@ $(function () {
         sortResults($(this).val());
     });
 
-    /* TV schedule widget (home page) */
     function todayISO() {
         const now = new Date();
         const offset = now.getTimezoneOffset();
@@ -627,7 +610,6 @@ $(function () {
     }
 });
 
-/* Highlight the current page in the navigation bar */
 $(function () {
     const path = window.location.pathname.split('/').pop() || 'index.html';
     $('.nav-menu a').each(function () {

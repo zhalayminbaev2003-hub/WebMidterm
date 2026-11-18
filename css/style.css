@@ -1,6 +1,3 @@
-/* CinemaHub - global styles */
-
-/* Design tokens */
 :root {
     --main-bg: #141414;
     --text-color: #f5f5f5;
@@ -17,7 +14,6 @@
     --radius: 10px;
 }
 
-/* Light theme is activated by the data-theme attribute set from js/theme.js */
 html[data-theme="light"] {
     --main-bg: #f2f4f8;
     --text-color: #16181d;
@@ -33,7 +29,6 @@ html[data-theme="light"] {
     --shadow: 0 12px 30px rgba(16, 20, 28, 0.12);
 }
 
-/* Base layout */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--main-bg);
@@ -93,14 +88,12 @@ html[data-theme="light"] .btn-outline-light:hover {
     color: #ffffff;
 }
 
-/* The hero text is white on the dark theme, so it has to follow the text colour */
 html[data-theme="light"] .hero h1,
 html[data-theme="light"] .hero p,
 html[data-theme="light"] .hero .text-light {
     color: var(--text-color) !important;
 }
 
-/* Header & navigation */
 .header {
     position: fixed;
     top: 0;
@@ -147,14 +140,12 @@ html[data-theme="light"] .hero .text-light {
     color: var(--accent-color);
 }
 
-/* Current page highlight */
 .nav-menu a.active {
     color: var(--accent-color);
     border-bottom: 2px solid var(--accent-color);
     padding-bottom: 3px;
 }
 
-/* Theme toggle & user menu */
 .nav-actions {
     display: flex;
     align-items: center;
@@ -260,7 +251,6 @@ html[data-theme="light"] .hero .text-light {
     color: var(--muted-color);
 }
 
-/* Movie cards, gallery & lightbox */
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -398,7 +388,6 @@ html[data-theme="light"] .hero .text-light {
     border-color: white;
 }
 
-/* Lightbox */
 .gallery-lightbox {
     position: fixed;
     inset: 0;
@@ -429,7 +418,6 @@ html[data-theme="light"] .hero .text-light {
     right: 20px;
 }
 
-/* Forms, tables & account panel */
 .form-panel {
     background-color: var(--panel-bg);
     border: 1px solid var(--border-color);
@@ -516,7 +504,6 @@ small {
     color: var(--muted-color);
 }
 
-/* FAQ accordion */
 .faq-list {
     display: flex;
     flex-direction: column;
@@ -582,7 +569,6 @@ small {
     margin-bottom: 18px;
 }
 
-/* API (TVMaze) blocks */
 .api-panel {
     background-color: var(--panel-bg);
     border: 1px solid var(--border-color);
@@ -663,7 +649,6 @@ small {
     100% { background-position: -200% 0; }
 }
 
-/* Footer */
 .footer {
     background-color: #000;
     color: #cfcfcf;
@@ -689,7 +674,6 @@ html[data-theme="light"] .footer {
     color: #fff;
 }
 
-/* Responsive design */
 @media (max-width: 992px) {
     .header {
         flex-wrap: wrap;

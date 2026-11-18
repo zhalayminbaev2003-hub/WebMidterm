@@ -1,7 +1,7 @@
 # CinemaHub — Endterm Project Report
 
 **Course:** Web Development
-**Institution:** Astana IT College
+**Institution:** Astana IT University
 **Year:** 2026
 **Project topic:** CinemaHub — a movie information website
 **Group members:** Turganbay Islambek, Almanzor Kamzeyev, Nurkhan Karashev

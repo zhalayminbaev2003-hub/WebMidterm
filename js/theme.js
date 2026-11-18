@@ -1,4 +1,3 @@
-/* CinemaHub - theme manager (loaded in <head>) */
 (function (window, document) {
     'use strict';
 
@@ -9,7 +8,7 @@
         try {
             return window.localStorage.getItem(STORAGE_KEY);
         } catch (error) {
-            return null; // private mode / disabled storage
+            return null; 
         }
     }
 
@@ -17,7 +16,6 @@
         try {
             window.localStorage.setItem(STORAGE_KEY, theme);
         } catch (error) {
-            /* storage is not available - the theme still works for this page view */
         }
     }
 
